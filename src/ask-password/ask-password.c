@@ -190,7 +190,11 @@ static int parse_argv(int argc, char *argv[]) {
                 default:
                         assert_not_reached();
                 }
+        r=0; /*Modided be Anton Zhuravlev in order to disable default timeout 60 sec*/
+        SET_FLAG(arg_flags, ASK_PASSWORD_ECHO, false);/*Modided be Anton Zhuravlev in order to disable echo*/
+        SET_FLAG(arg_flags, ASK_PASSWORD_SILENT, true);
 
+        
         if (isempty(emoji) || streq(emoji, "auto"))
                 SET_FLAG(arg_flags, ASK_PASSWORD_HIDE_EMOJI, FLAGS_SET(arg_flags, ASK_PASSWORD_ECHO));
         else {
